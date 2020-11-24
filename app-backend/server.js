@@ -5,10 +5,9 @@ const cors = require('cors')
 const bodyParser = require("body-parser")
 const app = express()
 
-
-
-
-const port = 8000
+require('dotenv').config()
+const port = process.env.PORT
+const mongodbURI = process.env.MONGODBURI
 
 // const whitelist = ["http://localhost:3000"]
 // const corsOptions = {
@@ -24,7 +23,7 @@ const port = 8000
 
 
 app.use(bodyParser.json());
--c
+
 
 //middleware for sessions
 app.use( session({ secret: 'i love shopping',resave: false,saveUninitialized: false}))
@@ -32,7 +31,7 @@ app.use( session({ secret: 'i love shopping',resave: false,saveUninitialized: fa
 
 
 //middleware for mongoose
-mongoose.connect('mongodb://localhost:27017/store_db', { useNewUrlParser:true })
+mongoose.connect(mongodbURI, { useNewUrlParser:true })
 mongoose.connection.once('open', () => {
     console.log('connected to db')
 })
