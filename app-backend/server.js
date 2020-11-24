@@ -26,7 +26,7 @@ app.use(bodyParser.json());
 
 
 //middleware for sessions
-app.use( session({ secret: 'i love shopping',resave: false,saveUninitialized: false}))
+app.use( session({ secret: process.env.SECRET, resave: false,saveUninitialized: false}))
 
 
 
